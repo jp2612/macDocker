@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="75766da5-513f-42f6-99c7-9a79bb6d03ec" name="Changes" comment="- Code refactor">
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/.filecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/app.dill" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/app.dill.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/dart2js.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/dart2js.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/flutter_assets.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/gen_localizations.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/main.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/main.dart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/main.dart.js.deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/outputs.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/service_worker.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_entrypoint.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_plugin_registrant.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_release_bundle.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_resources.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_service_worker.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_static_assets.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_templated_files.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/.last_build_id" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/AssetManifest.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/AssetManifest.bin.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/AssetManifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/FontManifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/NOTICES" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/assets/appstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/assets/calendar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/assets/chrome.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/assets/finder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/assets/launchpad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/assets/music.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/fonts/MaterialIcons-Regular.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/packages/cupertino_icons/assets/CupertinoIcons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/assets/shaders/ink_sparkle.frag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/canvaskit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/canvaskit.js.symbols" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/canvaskit.wasm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/chromium/canvaskit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/chromium/canvaskit.js.symbols" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/chromium/canvaskit.wasm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/skwasm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/skwasm.js.symbols" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/skwasm.wasm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/canvaskit/skwasm.worker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/flutter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/flutter_bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/flutter_service_worker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/icons/Icon-192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/icons/Icon-512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/icons/Icon-maskable-192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/icons/Icon-maskable-512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/main.dart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/web/version.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jeetparmar2810&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jp2612/macOsDocker.git&quot;,
+    &quot;accountId&quot;: &quot;7c8fddf4-dfd7-42d0-b283-a12181b1718e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2pfYAxPeCE2Df4b6bUaF3zuk9Cd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="75766da5-513f-42f6-99c7-9a79bb6d03ec" name="Changes" comment="" />
+      <created>1733158459372</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733158459372</updated>
+    </task>
+    <task id="LOCAL-00001" summary="- Code refactor">
+      <option name="closed" value="true" />
+      <created>1733160649925</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733160649925</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Code refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Code refactor" />
+  </component>
+</project>
