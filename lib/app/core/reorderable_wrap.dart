@@ -7,8 +7,21 @@ import 'wrap.dart';
 import 'run_metrics_wrap.dart';
 import 'reorderable_mixin.dart';
 
+/// A widget that allows children to be reordered interactively.
+///
+/// The [ReorderableWrap] widget provides a flexible way to arrange and reorder
+/// items in a wrap layout. Users can drag and drop the items, and the widget
+/// will notify the parent when reordering occurs.
+///
+/// You can customize various aspects such as the layout direction, scroll
+/// direction, animation duration, and reorder behavior.
 class ReorderableWrap extends StatefulWidget {
-  /// Creates a reorderable wrap.
+  /// Creates a reorderable wrap widget.
+  ///
+  /// The [children] list contains the widgets that will be displayed in the wrap.
+  /// The [onReorder] callback is required and is triggered when the user reorders
+  /// the items. Other properties are optional and allow customization of layout,
+  /// scrolling behavior, and reorder animations.
   const ReorderableWrap({
     required this.children,
     required this.onReorder,
@@ -40,49 +53,117 @@ class ReorderableWrap extends StatefulWidget {
     super.key,
   });
 
+  /// An optional header widget to display before the children.
   final List<Widget>? header;
+
+  /// An optional footer widget to display after the children.
   final Widget? footer;
+
+  /// A controller for the scroll view that holds the reorderable items.
   final ScrollController? controller;
+
+  /// A list of widgets to be reordered.
   final List<Widget> children;
+
+  /// The direction of the items in the wrap layout.
   final Axis direction;
+
+  /// The direction in which the list can be scrolled.
   final Axis scrollDirection;
+
+  /// Custom scrolling physics for the wrap, if needed.
   final ScrollPhysics? scrollPhysics;
+
+  /// The padding to be applied around the content.
   final EdgeInsets? padding;
+
+  /// A callback that is called when items are reordered.
   final ReorderCallback onReorder;
+
+  /// An optional callback that is called when no reorder occurs.
   final NoReorderCallback? onNoReorder;
+
+  /// An optional callback that is called when the reorder operation starts.
   final ReorderStartedCallback? onReorderStarted;
+
+  /// A builder for customizing the container for the items.
   final BuildItemsContainer? buildItemsContainer;
+
+  /// A builder for customizing the draggable feedback.
   final BuildDraggableFeedback? buildDraggableFeedback;
+
+  /// Whether a long press gesture is required to start the drag.
   final bool needsLongPressDraggable;
+
+  /// The alignment of items within the wrap.
   final WrapAlignment alignment;
+
+  /// The space between the items.
   final double spacing;
+
+  /// The alignment of the runs within the wrap.
   final WrapAlignment runAlignment;
+
+  /// The space between the runs in the wrap.
   final double runSpacing;
+
+  /// The cross-axis alignment of the items.
   final WrapCrossAlignment crossAxisAlignment;
+
+  /// The text direction for the wrap.
   final TextDirection? textDirection;
+
+  /// The vertical direction for the wrap (up or down).
   final VerticalDirection verticalDirection;
+
+  /// The minimum number of items that can appear in a row.
   final int? minMainAxisCount;
+
+  /// The maximum number of items that can appear in a row.
   final int? maxMainAxisCount;
+
+  /// A callback that is called when the reorder operation is canceled or fails.
   final Duration reorderAnimationDuration;
+
+  /// A callback that is called when the scroll animation is triggered.
   final Duration scrollAnimationDuration;
+
+  /// Whether to ignore the primary scroll controller for this widget.
   final bool ignorePrimaryScrollController;
+
+  /// Whether reorder is enabled for this widget.
   final bool enableReorder;
 
-  @override ReorderableWrapState createState() => ReorderableWrapState();
+  @override
+  ReorderableWrapState createState() => ReorderableWrapState();
 }
 
 
-class ReorderableWrapState extends State<ReorderableWrap> {
-  // We use an inner overlay so that the dragging list item doesn't draw outside of the list itself.
-  final GlobalKey _overlayKey =
-      GlobalKey(debugLabel: '$ReorderableWrap overlay key');
 
-  // This entry contains the scrolling list itself.
+/// The [ReorderableWrapState] class is the state for a reorderable wrap widget.
+///
+/// It manages the internal overlay and the list of reorderable items in a
+/// `ReorderableWrap`. The class handles the initialization of the overlay,
+/// item reordering, and provides a wrapper around the list content.
+class ReorderableWrapState extends State<ReorderableWrap> {
+  /// The key for the overlay that contains the reorderable list.
+  ///
+  /// This key is used to identify the overlay and ensure proper placement
+  /// within the widget tree.
+  final GlobalKey _overlayKey =
+  GlobalKey(debugLabel: '$ReorderableWrap overlay key');
+
+  /// The entry for the list overlay.
+  ///
+  /// This entry contains the actual content of the reorderable list and is
+  /// displayed within the overlay.
   late PassthroughOverlayEntry _listOverlayEntry;
 
   @override
   void initState() {
     super.initState();
+
+    // Initialize the overlay entry with the content builder for the list.
     _listOverlayEntry = PassthroughOverlayEntry(
       opaque: false,
       builder: (BuildContext context) {
@@ -120,11 +201,15 @@ class ReorderableWrapState extends State<ReorderableWrap> {
 
   @override
   Widget build(BuildContext context) {
+    // Create the passthrough overlay that contains the list overlay entry.
     final PassthroughOverlay passthroughOverlay = PassthroughOverlay(
         key: _overlayKey,
         initialEntries: <PassthroughOverlayEntry>[
           _listOverlayEntry,
         ]);
+
+    // Return the passthrough overlay, conditionally using the primary scroll
+    // controller based on the widget configuration.
     return widget.ignorePrimaryScrollController
         ? PrimaryScrollController.none(child: passthroughOverlay)
         : passthroughOverlay;
@@ -196,12 +281,6 @@ class _ReorderableWrapContent extends StatefulWidget {
 
 class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
     with TickerProviderStateMixin<_ReorderableWrapContent>, ReorderableMixin {
-  // The extent along the [widget.scrollDirection] axis to allow a child to
-  // drop into when the user reorders list children.
-  //
-  // This value is used when the extents haven't yet been calculated from
-  // the currently dragging widget, such as when it first builds.
-//  static const double _defaultDropAreaExtent = 1.0;
 
   // The additional margin to place around a computed drop area.
   static const double _dropAreaMargin = 0.0;
@@ -224,15 +303,11 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
   late AnimationController _ghostController;
 
   // The member of widget.children currently being dragged.
-  //
-  // Null if no drag is underway.
-//  int _dragging;
   Widget? _draggingWidget;
 
   // The last computed size of the feedback widget being dragged.
   Size? _draggingFeedbackSize;
 
-//  List<GlobalObjectKey> _childKeys;
   late List<BuildContext?> _childContexts;
   late List<Size> _childSizes;
   late List<int> _childIndexToDisplayIndex;
@@ -258,25 +333,43 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
   late List<Widget?> _wrapChildren;
   late bool enableReorder;
 
+
+  /// Returns the drop area size, including the margin,
+  /// if the dragging feedback size is not null.
   Size get _dropAreaSize {
     if (_draggingFeedbackSize == null) {
       return const Size(0, 0);
     }
-    return _draggingFeedbackSize! +
-        const Offset(_dropAreaMargin, _dropAreaMargin);
+    // Return the dragging feedback size plus the drop area margin
+    return _draggingFeedbackSize! + const Offset(_dropAreaMargin, _dropAreaMargin);
   }
 
   @override
   void initState() {
     super.initState();
+    // Initialize the enableReorder flag based on the widget value
     enableReorder = widget.enableReorder;
+
+    // Initialize animation durations
     _reorderAnimationDuration = widget.reorderAnimationDuration;
     _scrollAnimationDuration = widget.scrollAnimationDuration;
+
+    // Create the animation controllers for the reorder and ghost animations
     _entranceController = AnimationController(
-        value: 1.0, vsync: this, duration: _reorderAnimationDuration);
+        value: 1.0,
+        vsync: this,
+        duration: _reorderAnimationDuration
+    );
     _ghostController = AnimationController(
-        value: 0, vsync: this, duration: _reorderAnimationDuration);
+        value: 0,
+        vsync: this,
+        duration: _reorderAnimationDuration
+    );
+
+    // Add listener for the entrance animation status changes
     _entranceController.addStatusListener(_onEntranceStatusChanged);
+
+    // Initialize lists based on the number of children
     _childContexts = List.filled(widget.children.length, null);
     _childSizes = List.filled(widget.children.length, const Size(0, 0));
     _wrapChildRunIndexes = List.filled(widget.children.length, -1);
@@ -287,33 +380,50 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
 
   @override
   void didChangeDependencies() {
+    // Set up the scroll controller, using the widget controller or the primary scroll controller if available
     _scrollController = widget.controller ??
         PrimaryScrollController.maybeOf(context) ??
         ScrollController();
+
     super.didChangeDependencies();
   }
 
   @override
   void dispose() {
+    // Dispose of the animation controllers when no longer needed
     _entranceController.dispose();
     _ghostController.dispose();
     super.dispose();
   }
 
-  // Animates the droppable space from _currentIndex to _nextIndex.
+
+
+  /// Animates the transition of the droppable space from _currentIndex to _nextIndex.
   void _requestAnimationToNextIndex({bool isAcceptingNewTarget = false}) {
+    // Check if the entrance animation has completed before proceeding
     if (_entranceController.isCompleted) {
+      // Set the ghost display index to the current display index
       _ghostDisplayIndex = _currentDisplayIndex;
+
+      // If we are not accepting a new target and the next index is the same as the current one, do nothing
       if (!isAcceptingNewTarget && _nextDisplayIndex == _currentDisplayIndex) {
         return;
       }
+
+      // Update the current display index to the next display index
       _currentDisplayIndex = _nextDisplayIndex;
+
+      // Reverse the ghost controller animation from the end (1.0) to the start
       _ghostController.reverse(from: 1.0);
+
+      // Start the entrance animation from the beginning (0.0)
       _entranceController.forward(from: 0.0);
     }
   }
 
+  /// Called when the entrance animation status changes.
   void _onEntranceStatusChanged(AnimationStatus status) {
+    // When the entrance animation completes, request the animation to the next index
     if (status == AnimationStatus.completed) {
       setState(() {
         _requestAnimationToNextIndex();
@@ -321,15 +431,27 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
     }
   }
 
+
+
+  /// Scrolls the given [context] into view, adjusting for the margin and checking if the item is visible.
   void _scrollTo(BuildContext context) {
+    // Return early if already scrolling or no clients are attached to the scroll controller
     if (_scrolling || !_scrollController.hasClients) return;
+
+    // Get the render object of the context and its associated viewport
     final RenderObject contextObject = context.findRenderObject()!;
     final RenderAbstractViewport viewport =
-        RenderAbstractViewport.of(contextObject);
+    RenderAbstractViewport.of(contextObject);
+
+    // Calculate the margin based on the scroll direction (horizontal or vertical)
     final double margin = widget.direction == Axis.horizontal
         ? _dropAreaSize.width
         : _dropAreaSize.height;
+
+    // Get the current scroll position
     final double scrollOffset = _scrollController.offset;
+
+    // Calculate the top and bottom offsets for scrolling
     final double topOffset = max(
       _scrollController.position.minScrollExtent,
       viewport.getOffsetToReveal(contextObject, 0.0).offset - margin,
@@ -338,8 +460,12 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
       _scrollController.position.maxScrollExtent,
       viewport.getOffsetToReveal(contextObject, 1.0).offset + margin,
     );
+
+    // Check if the item is already on screen
     final bool onScreen =
         scrollOffset <= topOffset && scrollOffset >= bottomOffset;
+
+    // If the item is not on screen, scroll to the required position
     if (!onScreen) {
       _scrolling = true;
       _scrollController.position
@@ -349,6 +475,7 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
         curve: Curves.easeInOut,
       )
           .then((void value) {
+        // Reset the scrolling state after animation completes
         setState(() {
           _scrolling = false;
         });
@@ -356,7 +483,9 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
     }
   }
 
+  /// Builds a container for the main axis using a [Wrap] widget to display the given [children].
   Widget _buildContainerForMainAxis({required List<Widget> children}) {
+    // Determine the alignment for the run based on crossAxisAlignment
     WrapAlignment runAlignment;
     switch (widget.crossAxisAlignment) {
       case WrapCrossAlignment.start:
@@ -370,6 +499,8 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
         runAlignment = WrapAlignment.center;
         break;
     }
+
+    // Return a Wrap widget with the specified properties
     return Wrap(
       direction: widget.direction,
       runAlignment: runAlignment,
@@ -688,7 +819,7 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
         });
         _scrollTo(context);
         // If the target is not the original starting point, then we will accept the drop.
-        return willAccept; //_dragging == toAccept && toAccept != toWrap.key;
+        return willAccept;
       }
 
       Widget preDragTarget = DragTarget<int>(
@@ -718,7 +849,6 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
 
         },
       );
-
 
       Widget dragTarget = Stack(
         clipBehavior: Clip.hardEdge,
@@ -782,6 +912,8 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
 
   @override
   Widget build(BuildContext context) {
+    /// Resizes a list to match the length of the widget's children list.
+    /// Adds `initValue` if the list is too short or truncates the list if it is too long.
     List<E> resizeListMember<E>(List<E> listVar, E initValue) {
       if (listVar.length < widget.children.length) {
         return listVar +
@@ -792,40 +924,52 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
       return listVar;
     }
 
+    // Ensure lists (_childContexts, _childSizes, etc.) have the same length as widget.children
     _childContexts = resizeListMember(_childContexts, null);
     _childSizes = resizeListMember(_childSizes, const Size(0, 0));
 
+    // Initialize index mappings for children
     _childDisplayIndexToIndex =
         List.generate(widget.children.length, (int index) => index);
     _childIndexToDisplayIndex =
         List.generate(widget.children.length, (int index) => index);
+
+    // Reorder children if dragging
     if (_dragStartIndex >= 0 &&
         _currentDisplayIndex >= 0 &&
         _dragStartIndex != _currentDisplayIndex) {
-      _childDisplayIndexToIndex.insert(_currentDisplayIndex,
-          _childDisplayIndexToIndex.removeAt(_dragStartIndex));
+      _childDisplayIndexToIndex.insert(
+          _currentDisplayIndex, _childDisplayIndexToIndex.removeAt(_dragStartIndex));
     }
+
     int index = 0;
+    // Update child index mappings based on the display order
     for (var element in _childDisplayIndexToIndex) {
       _childIndexToDisplayIndex[element] = index++;
     }
+
+    // Resize other lists related to child layout
     _wrapChildRunIndexes = resizeListMember(_wrapChildRunIndexes, -1);
     _childRunIndexes = resizeListMember(_childRunIndexes, -1);
     _nextChildRunIndexes = resizeListMember(_nextChildRunIndexes, -1);
     _wrapChildren = resizeListMember(_wrapChildren, null);
     _childRunIndexes = _nextChildRunIndexes.toList();
 
+    // Prepare wrapped children for display
     final List<Widget> wrappedChildren = <Widget>[];
     for (int i = 0; i < widget.children.length; i++) {
       wrappedChildren.add(_wrap(widget.children[i], i));
     }
+
+    // Reorder wrapped children if dragging
     if (_dragStartIndex >= 0 &&
         _currentDisplayIndex >= 0 &&
         _dragStartIndex != _currentDisplayIndex) {
-      //we are dragging an widget
       wrappedChildren.insert(
           _currentDisplayIndex, wrappedChildren.removeAt(_dragStartIndex));
     }
+
+    // Insert header and footer if present
     if (widget.header != null) {
       wrappedChildren.insertAll(0, widget.header!);
     }
@@ -833,6 +977,7 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
       wrappedChildren.add(widget.footer!);
     }
 
+    // Return wrapped children with or without scrolling based on controller presence
     if (widget.controller != null &&
         PrimaryScrollController.maybeOf(context) == null) {
       return (widget.buildItemsContainer ?? defaultBuildItemsContainer)(
@@ -849,6 +994,8 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
     }
   }
 
+  /// Default method to build the container for items.
+  /// Uses `WrapWithMainAxisCount` to arrange children based on layout properties.
   Widget defaultBuildItemsContainer(
       BuildContext context, Axis direction, List<Widget> children) {
     return WrapWithMainAxisCount(
@@ -867,6 +1014,8 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
     );
   }
 
+  /// Default method to build the draggable feedback widget.
+  /// Displays a draggable child wrapped in a Material and Card widget for visual effect.
   Widget defaultBuildDraggableFeedback(
       BuildContext context, BoxConstraints constraints, Widget child) {
     return Transform(
@@ -876,8 +1025,7 @@ class _ReorderableWrapContentState extends State<_ReorderableWrapContent>
         elevation: 6.0,
         color: Colors.transparent,
         borderRadius: BorderRadius.zero,
-        child:
-            Card(child: ConstrainedBox(constraints: constraints, child: child)),
+        child: Card(child: ConstrainedBox(constraints: constraints, child: child)),
       ),
     );
   }

@@ -38,25 +38,57 @@ class WrapWithMainAxisCountParentData extends WrapParentData {
   int _runIndex = 0;
 }
 
-class RenderWrapWithMainAxisCount extends RenderWrap {
-  RenderWrapWithMainAxisCount({
-    super.children,
-    super.direction,
-    super.alignment,
-    super.spacing,
-    super.runAlignment,
-    super.runSpacing,
-    super.crossAxisAlignment,
-    super.textDirection,
-    super.verticalDirection,
-    this.minMainAxisCount,
-    this.maxMainAxisCount,
-  })  : assert(minMainAxisCount == null ||
-            maxMainAxisCount == null ||
-            maxMainAxisCount >= minMainAxisCount);
-
+  /// A custom widget that wraps children with a configurable number of main axis items.
+  ///
+  /// This widget allows wrapping the children in a `Wrap` layout, with the ability
+  /// to specify a minimum and maximum count of items along the main axis. The main axis
+  /// count constraints help ensure that the widget behaves correctly when dealing with
+  /// different screen sizes or dynamic content.
+  class RenderWrapWithMainAxisCount extends RenderWrap {
+  /// The minimum number of items to be displayed along the main axis.
+  ///
+  /// If null, no minimum is enforced. If specified, the `maxMainAxisCount` must
+  /// be greater than or equal to `minMainAxisCount`.
   int? minMainAxisCount;
+
+  /// The maximum number of items to be displayed along the main axis.
+  ///
+  /// If null, no maximum is enforced. This value must be greater than or equal to
+  /// the `minMainAxisCount` if it is specified.
   int? maxMainAxisCount;
+
+  /// Constructs a [RenderWrapWithMainAxisCount] widget with the specified parameters.
+  ///
+  /// All parameters are forwarded to the parent `Wrap` widget, with additional
+  /// parameters for `minMainAxisCount` and `maxMainAxisCount`.
+  ///
+  /// The assert checks that if `minMainAxisCount` is provided, `maxMainAxisCount`
+  /// is either null or greater than or equal to `minMainAxisCount`.
+  ///
+  /// * [children] - A list of children widgets to be displayed inside the wrap.
+  /// * [direction] - The direction of the wrap (either horizontal or vertical).
+  /// * [alignment] - The alignment of the children within the wrap.
+  /// * [spacing] - The spacing between the children.
+  /// * [runAlignment] - The alignment of the runs in the wrap.
+  /// * [runSpacing] - The spacing between the runs.
+  /// * [crossAxisAlignment] - The alignment of the children along the cross axis.
+  /// * [textDirection] - The text direction for the wrap.
+  /// * [verticalDirection] - The vertical direction for the wrap.
+  RenderWrapWithMainAxisCount({
+  super.children,
+  super.direction,
+  super.alignment,
+  super.spacing,
+  super.runAlignment,
+  super.runSpacing,
+  super.crossAxisAlignment,
+  super.textDirection,
+  super.verticalDirection,
+  this.minMainAxisCount,
+  this.maxMainAxisCount,
+  })  : assert(minMainAxisCount == null ||
+  maxMainAxisCount == null ||
+  maxMainAxisCount >= minMainAxisCount);
 
   bool get _debugHasNecessaryDirections {
     if (firstChild != null && lastChild != firstChild) {

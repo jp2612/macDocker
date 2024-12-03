@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/dimens.dart';
 
 /// A custom tooltip widget that displays a message with a triangular pointer.
 class CustomTooltip extends StatelessWidget {
@@ -18,19 +19,25 @@ class CustomTooltip extends StatelessWidget {
       children: [
         // The tooltip message container
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding: const EdgeInsets.symmetric(
+            horizontal: Dimens.tooltipPaddingHorizontal,
+            vertical: Dimens.tooltipPaddingVertical,
+          ),
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(4),
           ),
           child: Text(
             message,
-            style: const TextStyle(color: Colors.white, fontSize: 12),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: Dimens.tooltipFontSize,
+            ),
           ),
         ),
         // The triangular pointer
         CustomPaint(
-          size: const Size(10, 6), // Width and height of the triangle
+          size: const Size(Dimens.triangleWidth, Dimens.triangleHeight), // Width and height of the triangle
           painter: TrianglePainter(backgroundColor: backgroundColor),
         ),
       ],

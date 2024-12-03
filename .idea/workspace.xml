@@ -5,25 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75766da5-513f-42f6-99c7-9a79bb6d03ec" name="Changes" comment="- Code refactor">
-      <change afterPath="$PROJECT_DIR$/lib/app/utils/dimens.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/widgets/custom_tooltip.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/.filecache" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/.filecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/service_worker.d" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/service_worker.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_service_worker.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/web_service_worker.stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/web" beforeDir="false" afterPath="$PROJECT_DIR$/build/web" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/passthrough_overlay.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/passthrough_overlay.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/render_size_transition.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/render_size_transition.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/reorderable_mixin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/reorderable_mixin.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/reorderable_wrap.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/reorderable_wrap.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/run_metrics_wrap.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/run_metrics_wrap.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/transitions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/transitions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/typedefs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/typedefs.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/wrap.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/wrap.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/asset_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/widgets/asset_item.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/custom_tooltip.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/macos_docker_example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/widgets/macos_docker_example.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/passthrough_overlay.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/passthrough_overlay.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/render_size_transition.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/render_size_transition.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/reorderable_wrap.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/reorderable_wrap.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/run_metrics_wrap.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/run_metrics_wrap.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/utils/dimens.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/utils/dimens.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/widgets/asset_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/widgets/asset_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/widgets/custom_tooltip.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/widgets/custom_tooltip.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/widgets/macos_docker_example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/widgets/macos_docker_example.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

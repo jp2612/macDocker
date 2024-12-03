@@ -254,22 +254,39 @@ class PassthroughOverlayState extends State<PassthroughOverlay> with TickerProvi
     setState(() {});
   }
 
+  /// Builds the widget for rendering overlay entries based on their state.
+  ///
+  /// The widget sorts the entries into two lists: one for onstage entries and one for
+  /// offstage entries. The onstage entries are displayed first, while the offstage
+  /// entries are added but not rendered directly. Offstage entries are wrapped in a
+  /// `TickerMode` to prevent unnecessary animations or updates when they are offstage.
+  ///
+  /// Returns a `_Theatre` widget that contains both onstage and offstage children.
   @override
   Widget build(BuildContext context) {
+    // Lists to hold the onstage and offstage children
     final List<Widget> onstageChildren = <Widget>[];
     final List<Widget> offstageChildren = <Widget>[];
+
+    // Flag to determine if the current entry should be onstage
     bool onstage = true;
 
+    // Iterate through the entries in reverse order
     for (int i = _entries.length - 1; i >= 0; i -= 1) {
       final PassthroughOverlayEntry entry = _entries[i];
+
+      // If the entry is onstage, add it to the onstage list
       if (onstage) {
         onstageChildren.add(_OverlayEntry(entry));
+        // If the entry is opaque, switch the flag to offstage
         if (entry.opaque) onstage = false;
       } else if (entry.maintainState) {
+        // If the entry should maintain state, add it to the offstage list
         offstageChildren.add(TickerMode(enabled: false, child: _OverlayEntry(entry)));
       }
     }
 
+    // Return the Theatre widget with both onstage and offstage children
     return _Theatre(
       onstage: Stack(
         fit: StackFit.passthrough,
@@ -279,6 +296,10 @@ class PassthroughOverlayState extends State<PassthroughOverlay> with TickerProvi
     );
   }
 
+  /// Fills in the properties for debugging purposes.
+  ///
+  /// This method adds the current entries list to the diagnostics, which is useful
+  /// for debugging purposes.
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);

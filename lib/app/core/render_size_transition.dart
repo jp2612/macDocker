@@ -93,5 +93,4 @@ class RenderSizeTransitionWithIntrinsicSize extends RenderProxyBox {
     }
     return 0.0; // No intrinsic height if there's no child.
   }
-
 }

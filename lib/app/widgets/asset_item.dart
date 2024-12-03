@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../utils/dimens.dart';
+
 
 /// A widget that displays an icon and a name for an asset item.
-///
 /// This widget displays an icon image from the specified [iconPath] and the asset's name.
 /// The layout is vertically aligned with the image centered and the name displayed below the icon.
 class AssetItem extends StatelessWidget {
@@ -23,13 +24,12 @@ class AssetItem extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Displays the asset's icon image.
+        // Displays the asset's icon image using the static icon size from Dimens.
         Image.asset(
           iconPath,
-          width: 40,
-          height: 40,
+          width: Dimens.iconSize,
+          height: Dimens.iconSize,
         ),
-        // Optionally, you can add the name widget here if required.
       ],
     );
   }

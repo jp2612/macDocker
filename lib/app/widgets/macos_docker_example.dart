@@ -4,6 +4,8 @@ import 'asset_item.dart';
 import 'custom_tooltip.dart';
 import '../utils/dimens.dart';  // Import the dimens file
 
+/// A StatefulWidget that demonstrates a macOS-like Docker interface,
+/// allowing users to reorder app icons in a horizontal layout.
 class MacosDockerExample extends StatefulWidget {
   const MacosDockerExample({super.key});
 
@@ -12,6 +14,7 @@ class MacosDockerExample extends StatefulWidget {
 }
 
 class MacosDockerExampleState extends State<MacosDockerExample> {
+  // List of app icons and their names to be displayed in the Docker
   final List<Map<String, dynamic>> _items = [
     {'icon': 'assets/appstore.png', 'name': 'App Store', 'key': GlobalKey()},
     {'icon': 'assets/calendar.png', 'name': 'Calendar', 'key': GlobalKey()},
@@ -21,9 +24,9 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
     {'icon': 'assets/music.png', 'name': 'Music', 'key': GlobalKey()},
   ];
 
-  OverlayEntry? _overlayEntry;
-  String _tooltipMessage = '';
-  int? draggedIndex;
+  OverlayEntry? _overlayEntry;  // Overlay for tooltip
+  String _tooltipMessage = '';  // Tooltip message to be shown
+  int? draggedIndex;  // Index of the currently dragged item
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +61,7 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
                       name: assetItem['name']!,
                     );
                   },
+                  // Generate the list of draggable app icons
                   children: List.generate(
                     _items.length,
                         (index) => GestureDetector(
@@ -84,6 +88,8 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
     );
   }
 
+  /// Called when the order of the items in the Docker is changed.
+  /// Updates the position of the item in the list and shows the tooltip.
   void _onReorder(int oldIndex, int newIndex) {
     setState(() {
       final item = _items.removeAt(oldIndex);
@@ -92,8 +98,10 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
     });
   }
 
+  /// Shows a tooltip at the position of the item.
+  /// Uses an overlay entry to display a custom tooltip.
   void _showTooltip(int index, String message) {
-    _overlayEntry?.remove();
+    _overlayEntry?.remove();  // Remove any existing tooltip
     setState(() {
       _tooltipMessage = message;
     });
@@ -115,6 +123,7 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
       final tooltipWidth = textPainter.width;
       final tooltipLeft = position.dx + (renderBox.size.width / 2) - (tooltipWidth / 2) - Dimens.tooltipOffset;
 
+      // Create the overlay entry for the tooltip
       _overlayEntry = OverlayEntry(
         builder: (context) => Positioned(
           left: tooltipLeft,
@@ -130,12 +139,14 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
 
       overlay.insert(_overlayEntry!);
 
+      // Hide the tooltip after a delay
       Future.delayed(const Duration(seconds: 2), () {
         _hideTooltip();
       });
     }
   }
 
+  /// Hides the tooltip by removing the overlay entry.
   void _hideTooltip() {
     _overlayEntry?.remove();
     _overlayEntry = null;
