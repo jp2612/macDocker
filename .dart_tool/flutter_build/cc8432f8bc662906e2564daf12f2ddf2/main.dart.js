@@ -58701,7 +58701,7 @@ k.toString
 p=A.ZB(l,l,l,l,A.uh(l,B.Ic,b),B.ax,B.U,l,B.al,B.ay)
 p.HQ()
 o=p.b.c
-n=A.Bs(new A.RK(m,q.a+r.gA().a/2-o/2-15,q),!1,!1)
+n=A.Bs(new A.RK(m,q.a+r.gA().a/2-o/2-12,q),!1,!1)
 m.e=n
 k.xu(0,n)
 A.mO(B.dv,new A.RL(m),t.P)}},
