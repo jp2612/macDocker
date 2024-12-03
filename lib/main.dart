@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:macdocker/widgets/macos_docker_example.dart';
+
+import 'app/widgets/macos_docker_example.dart';
 
 /// Entry point of the Flutter application.
 void main() {
