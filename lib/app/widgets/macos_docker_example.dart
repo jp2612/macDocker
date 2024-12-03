@@ -69,9 +69,13 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
                       onTap: () {
                         _showTooltip(index, _items[index]['name']!);
                       },
-                      child: AssetItem(
-                        iconPath: _items[index]['icon']!,
-                        name: _items[index]['name']!,
+                      child: MouseRegion(
+                        onEnter: (_) => _showTooltip(index, _items[index]['name']!),
+                        onExit: (_) => _hideTooltip(),
+                        child: AssetItem(
+                          iconPath: _items[index]['icon']!,
+                          name: _items[index]['name']!,
+                        ),
                       ),
                     ),
                   ),
