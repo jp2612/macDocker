@@ -4,6 +4,8 @@ import 'asset_item.dart';
 import 'custom_tooltip.dart';
 import '../utils/dimens.dart';  // Import the dimens file
 
+/// A StatefulWidget that implements a MacOS Docker-like UI,
+/// allowing draggable items with tooltips.
 class MacosDockerExample extends StatefulWidget {
   const MacosDockerExample({super.key});
 
@@ -12,6 +14,7 @@ class MacosDockerExample extends StatefulWidget {
 }
 
 class MacosDockerExampleState extends State<MacosDockerExample> {
+  // List of items to be displayed in the Docker, each with an icon, name, and a unique key.
   final List<Map<String, dynamic>> _items = [
     {'icon': 'assets/appstore.png', 'name': 'App Store', 'key': GlobalKey()},
     {'icon': 'assets/calendar.png', 'name': 'Calendar', 'key': GlobalKey()},
@@ -21,10 +24,17 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
     {'icon': 'assets/music.png', 'name': 'Music', 'key': GlobalKey()},
   ];
 
+  // The OverlayEntry used to display tooltips
   OverlayEntry? _overlayEntry;
+
+  // Message to display in the tooltip
   String _tooltipMessage = '';
+
+  // Index of the item being dragged
   int? draggedIndex;
-  int? hoveredIndex; // Index of the currently hovered item
+
+  // Index of the item currently hovered over by the mouse
+  int? hoveredIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +72,7 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
                   children: List.generate(
                     _items.length,
                         (index) => MouseRegion(
+                      // Update the hovered item index on hover
                       onEnter: (_) {
                         setState(() {
                           hoveredIndex = index;
@@ -75,7 +86,8 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
                         _hideTooltip();
                       },
                       child: AnimatedScale(
-                        scale: hoveredIndex == index ? 1.3 : 1.0, // Magnify on hover
+                        // Apply scaling effect on hover
+                        scale: hoveredIndex == index ? 1.3 : 1.0,
                         duration: const Duration(milliseconds: 200),
                         child: GestureDetector(
                           key: _items[index]['key']!,
@@ -99,6 +111,9 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
     );
   }
 
+  /// Handles the reordering of items in the list.
+  ///
+  /// The old index and new index are provided when an item is moved.
   void _onReorder(int oldIndex, int newIndex) {
     setState(() {
       final item = _items.removeAt(oldIndex);
@@ -107,6 +122,8 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
     });
   }
 
+  /// Displays a tooltip with the given message at the position of the
+  /// item at the specified index.
   void _showTooltip(int index, String message) {
     _overlayEntry?.remove();
     setState(() {
@@ -145,12 +162,14 @@ class MacosDockerExampleState extends State<MacosDockerExample> {
 
       overlay.insert(_overlayEntry!);
 
+      // Remove the tooltip after 2 seconds
       Future.delayed(const Duration(seconds: 2), () {
         _hideTooltip();
       });
     }
   }
 
+  /// Hides the currently displayed tooltip.
   void _hideTooltip() {
     _overlayEntry?.remove();
     _overlayEntry = null;

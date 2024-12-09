@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75766da5-513f-42f6-99c7-9a79bb6d03ec" name="Changes" comment="- Code refactor">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/.filecache" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/.filecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/app.dill" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/app.dill" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/main.dart.js" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/cc8432f8bc662906e2564daf12f2ddf2/main.dart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/core/reorderable_wrap.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/reorderable_wrap.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/widgets/macos_docker_example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/widgets/macos_docker_example.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
